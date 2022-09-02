@@ -40,11 +40,13 @@ const displayProducts = (products) => {
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card w-85 bg-base-100 shadow-xl">
-        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+        <figure ><img style="height:300px" src="${image}" alt="Shoes" /></figure>
         <div class="card-body">
-          <h2 class="card-title">Shoes!</h2>
+          <h2 class="card-title">${title}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions justify-end">
+          <div class="card-actions justify-between">
+            <kbd class="btn p-3">${price}$</kbd>
+            <kbd class="btn p-3">${rate}</kbd>
             <button class="btn btn-primary">Buy Now</button>
           </div>
         </div>
