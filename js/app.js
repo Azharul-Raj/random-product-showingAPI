@@ -1,7 +1,14 @@
-const loadProduct = async() => {
-    const res = await fetch('https://fakestoreapi.com/products')
-    const data = await res.json()
-    return(data)
+const loadProduct = async(category) => {
+    if (category) {
+        const res = await fetch(`https://fakestoreapi.com/products/${category}`)
+        const data = await res.json()
+        return(data)
+    }
+    else {
+        const res = await fetch(`https://fakestoreapi.com/products`)
+        const data = await res.json()
+        return(data)
+    }
 }
 
 const displayMenu = async () => {
@@ -55,6 +62,18 @@ const displayProducts = (products) => {
         productsContainer.appendChild(div)
     })
 }
+// event handler in search field
+document.getElementById('search-field').addEventListener('keypress', async(event) => {
+    const keyPress = event.key
+    if (keyPress === 'Enter') {
+        const searchField = document.getElementById('search-field')
+        const searchText = searchField.value
+        const loadAllProducts = await loadProduct()
+        const foundProduct = loadAllProducts.filter(product => product.category.includes(searchText))
+        console.log()
+    }
+})
+
 
 displayMenu()
 
