@@ -25,5 +25,17 @@ const displayMenu = async () => {
     }
     
 }
+// call product array in the console
+const callProducts = async () => {
+    const productsList = await loadProduct()
+    displayProducts(productsList)
+}
+
+// display product in the feed
+const displayProducts = (products) => {
+    const productsContainer = document.getElementById('products-container')
+}
 
 displayMenu()
+
+callProducts()
