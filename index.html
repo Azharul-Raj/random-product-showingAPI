@@ -15,7 +15,13 @@
         <input id="search-field" type="text" placeholder="Search Product" class="input input-bordered input-warning w-full max-w-xs" />
     </header>
     <main>
+        
         <section>
+            <!-- not found shown msg start -->
+            <div id="not-found" class="text-center">
+                  
+              </div>
+                <!-- not found shown msg end -->
             <!-- grid template col -->
             <div class="grid grid-cols-6 gap-4">
                 <div class="col-start-1 col-end-2 bg-red-500 p-10 rounded-xl max-h-48">                    
@@ -24,12 +30,15 @@
                     </ul>
                 </div>
                 <div class="col-start-2 col-end-8">
+                    
                     <!-- product container -->
                     <div id="products-container" class="grid grid-rows-auto grid-cols-3 gap-4">
                       
                     </div>
                 </div>
               </div>
+              <!-- not found message show -->
+              
         </section>
     </main>
     <!-- javascript -->

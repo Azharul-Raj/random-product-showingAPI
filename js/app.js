@@ -71,6 +71,18 @@ document.getElementById('search-field').addEventListener('keypress', async(event
         const loadAllProducts = await loadProduct()
         const foundProduct = loadAllProducts.filter(product => product.category.includes(searchText))
         const productsContainer = document.getElementById('products-container')
+
+        // not found msg showing start
+        const notFound = document.getElementById('not-found')
+        if (foundProduct.length === 0) {
+            notFound.innerHTML = `
+            <h2 class="text-4xl">No Products Found</h2>
+            `
+        }
+        else {
+            notFound.innerText = ''
+        }
+        // not found msg showing part end
         console.log(foundProduct)
         productsContainer.textContent = ``
         foundProduct.forEach(product => {
@@ -79,9 +91,9 @@ document.getElementById('search-field').addEventListener('keypress', async(event
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="card w-85 bg-base-100 shadow-xl">
-        <figure ><img style="height:300px" src="${image}" alt="Shoes" /></figure>
+        <figure ><img style="height:250px" src="${image}" alt="Shoes" /></figure>
         <div class="card-body">
-          <h2 class="card-title">${title}</h2>
+          <h2 class="card-title">${title.length > 20?title.slice(0,20) + '...':title}</h2>
           <p>If a dog chews shoes whose shoes does he choose?</p>
           <div class="card-actions justify-between">
             <kbd class="btn p-3">${price}$</kbd>
