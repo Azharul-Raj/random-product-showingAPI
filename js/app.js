@@ -39,9 +39,41 @@ const callProducts = async () => {
 }
 
 // display product in the feed
-const displayProducts = (products) => {
-    const productsContainer = document.getElementById('products-container')
-    products.forEach(product => {
+// const displayProducts = (products) => {
+//     const productsContainer = document.getElementById('products-container')
+//     products.forEach(product => {
+//         const { title, price, image, rating } = product
+//         const { rate, count } = rating
+//         const div = document.createElement('div')
+//         div.innerHTML = `
+//         <div class="card w-85 bg-base-100 shadow-xl">
+//         <figure ><img style="height:300px" src="${image}" alt="Shoes" /></figure>
+//         <div class="card-body">
+//           <h2 class="card-title">${title}</h2>
+//           <p>If a dog chews shoes whose shoes does he choose?</p>
+//           <div class="card-actions justify-between">
+//             <kbd class="btn p-3">${price}$</kbd>
+//             <kbd class="btn p-3">${rate}</kbd>
+//             <button class="btn btn-primary">Buy Now</button>
+//           </div>
+//         </div>
+//       </div>
+//         `
+//         productsContainer.appendChild(div)
+//     })
+// }
+// event handler in search field
+document.getElementById('search-field').addEventListener('keypress', async(event) => {
+    const keyPress = event.key
+    if (keyPress === 'Enter') {
+        const searchField = document.getElementById('search-field')
+        const searchText = searchField.value
+        const loadAllProducts = await loadProduct()
+        const foundProduct = loadAllProducts.filter(product => product.category.includes(searchText))
+        const productsContainer = document.getElementById('products-container')
+        console.log(foundProduct)
+        productsContainer.textContent = ``
+        foundProduct.forEach(product => {
         const { title, price, image, rating } = product
         const { rate, count } = rating
         const div = document.createElement('div')
@@ -60,21 +92,13 @@ const displayProducts = (products) => {
       </div>
         `
         productsContainer.appendChild(div)
+        searchField.value = ``
     })
-}
-// event handler in search field
-document.getElementById('search-field').addEventListener('keypress', async(event) => {
-    const keyPress = event.key
-    if (keyPress === 'Enter') {
-        const searchField = document.getElementById('search-field')
-        const searchText = searchField.value
-        const loadAllProducts = await loadProduct()
-        const foundProduct = loadAllProducts.filter(product => product.category.includes(searchText))
-        console.log()
+        
     }
 })
 
 
 displayMenu()
 
-callProducts()
+// callProducts()
